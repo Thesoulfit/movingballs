@@ -1,0 +1,116 @@
+<div
+  id="ball1"
+  style="
+    z-index: 5;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: green;
+  "
+></div>
+
+<div
+  id="ball2"
+  style="
+    z-index: 5;
+    position: absolute;
+    left: 100px;
+    top: 100px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgb(28, 0, 128);
+  "
+></div>
+
+<div
+  id="ball3"
+  style="
+    z-index: 5;
+    position: absolute;
+    left: 30px;
+    top: 300px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(128, 0, 17, 0.61);
+  "
+></div>
+
+<script>
+  var v1X = 5;
+  var v1Y = 3;
+  var p1X = 0;
+  var p1Y = 0;
+  var ball1 = document.getElementById("ball1");
+  var edgeWidth1 = parseInt(ball1.style.width, 10);
+
+  var v2X = 5;
+  var v2Y = 3;
+  var p2X = 100;
+  var p2Y = 100;
+  var ball2 = document.getElementById("ball2");
+  var edgeWidth2 = parseInt(ball2.style.width, 10);
+
+  var v3X = 5;
+  var v3Y = 3;
+  var p3X = 30;
+  var p3Y = 300;
+  var ball3 = document.getElementById("ball3");
+  var edgeWidth3 = parseInt(ball3.style.width, 10);
+
+  var colors = ["red", "blue", "purple", "green", "yellow", "orange"];
+  var sizes = ["25px", "50px", "75px", "100px", "125px", "150px"];
+
+  class Ball {
+    constructor(ballDOM, positionX, positionY, velocityX, edgeWidth) {
+      this.positionX = positionX;
+      this.positionY = positionY;
+      this.velocityX = velocityX;
+      this.edgeWidth = edgeWidth;
+      this.ballDOM = ballDOM;
+
+      setInterval(this.moveBall.bind(this), 10);
+    }
+
+    moveBall() {
+      console.log(this.positionX);
+
+      if (
+        this.positionX + this.edgeWidth > 500 ||
+        this.positionX + this.edgeWidth < this.edgeWidth
+      ) {
+        this.velocityX = -this.velocityX;
+        let color = colors[Math.floor(Math.random() * colors.length)];
+        let size = sizes[Math.floor(Math.random() * sizes.length)];
+        this.ballDOM.style.background = color;
+        this.ballDOM.style.height = size;
+        this.ballDOM.style.width = size;
+      }
+      if (
+        this.positionY + this.edgeWidth > 500 ||
+        this.positionY + this.edgeWidth < this.edgeWidth
+      ) {
+        velocityY = -velocityY;
+        let color = colors[Math.floor(Math.random() * colors.length)];
+        let size = sizes[Math.floor(Math.random() * sizes.length)];
+        this.ballDOM.style.background = color;
+        this.ballDOM.style.height = size;
+        this.ballDOM.style.width = size;
+      }
+      this.positionX = this.positionX + this.velocityX;
+      this.positionY = this.positionY + this.velocityY;
+      this.ballDOM.style.left = this.positionX + "px";
+      this.ballDOM.style.top = this.positionY + "px";
+    }
+  }
+
+  let newBall1 = new Ball(ball1, p1X, p1Y, v1X, v1Y, edgeWidth1);
+  let newBall2 = new Ball(ball2, p2X, p2Y, v2X, v2Y, edgeWidth2);
+  let newBall3 = new Ball(ball3, p3X, p3Y, v3X, v3Y, edgeWidth3);
+
+  // ----------------
+</script>
